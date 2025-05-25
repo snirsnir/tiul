@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טבלת עלויות בתי מלון בצפון</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .table-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            border-bottom: 3px solid #2980b9;
+        }
+
+        td {
+            padding: 18px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hotel-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .location {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .room-type {
+            background: #ecf0f1;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #2c3e50;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+
+        .price-breakdown {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .hall-price {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .extras {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+            background: #f1c40f;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .calculator {
+            margin-top: 30px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+        }
+
+        .calculator h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .calc-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .calc-row label {
+            min-width: 120px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .calc-row select, .calc-row input {
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 1em;
+            min-width: 150px;
+        }
+
+        .calc-row select:focus, .calc-row input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-right: 5px solid #27ae60;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .table-container {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+                font-size: 0.9em;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .calc-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .calc-row label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏨 טבלת עלויות בתי מלון בצפון</h1>
+            <p>השוואת מחירים ושירותים</p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>שם המלון</th>
+                        <th>מיקום</th>
+                        <th>סוג חדר</th>
+                        <th>מחיר ללילה</th>
+                        <th>השכרת אולם</th>
+                        <th>שונות</th>
+                        <th>סה"כ בסיסי</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="hotel-name">הגושרים</td>
+                        <td class="location">קיבוץ הגושרים</td>
+                        <td>
+                            <div class="room-type">זוג (40 חדרים)</div>
+                        </td>
+                        <td class="price-breakdown">
+                            <div class="price">₪1,430 לזוג</div>
+                        </td>
+                        <td class="hall-price">₪750</td>
+                        <td class="extras">
+                            תוספת ארוחה בשרית:<br>
+                            ₪155 למבוגר (80 אנשים)
+                        </td>
+                        <td class="total">
+                            <div class="price">₪69,600 כולל ארוחה בשרית</div>
+                            <div class="price">₪57,200 ללא ארוחה בשרית</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hotel-name">מרום גולן</td>
+                        <td class="location">רמת הגולן</td>
+                        <td>
+                            <div class="room-type">זוג (40 חדרים)</div>
+                        </td>
+                        <td class="price-breakdown">
+                            <div class="price">₪1,250 לזוג</div>
+                        </td>
+                        <td class="hall-price">₪3,000</td>
+                        <td class="extras">
+                            תוספת ארוחת ערב:<br>
+                            ₪150 במסעדה הבוקרים (80 אנשים)
+                        </td>
+                        <td class="total">
+                            <div class="price">₪62,000 כולל מסעדה הבוקרים</div>
+                            <div class="price">₪50,000 ללא מסעדה הבוקרים</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hotel-name">כפר גלעדי</td>
+                        <td class="location">עמק החולה</td>
+                        <td>
+                            <div class="room-type">זוג (40 חדרים)</div>
+                        </td>
+                        <td class="price-breakdown">
+                            <div class="price">₪1,300 לזוג</div>
+                        </td>
+                        <td class="hall-price">₪1,000</td>
+                        <td class="extras">
+                            חצי פנסיון כלול<br>
+                            (ארוחת בוקר + ערב)
+                        </td>
+                        <td class="total">
+                            ₪52,000
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hotel-name">לאונרדו טבריה</td>
+                        <td class="location">טבריה</td>
+                        <td>
+                            <div class="room-type">זוג (40 חדרים)</div>
+                        </td>
+                        <td class="price-breakdown">
+                            <div class="price">₪1,000 לזוג</div>
+                        </td>
+                        <td class="hall-price">₪1,500</td>
+                        <td class="extras">
+                            הכל כלול:<br>
+                            3 ארוחות, בר פתוח,<br>
+                            קרטיבים, משקאות<br>
+                            ואלכוהול תוצרת הארץ
+                        </td>
+                        <td class="total">
+                            ₪40,000
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calculator">
+                <h3>🧮 מחשבון עלויות</h3>
+                <div class="calc-row">
+                    <label>בחר מלון:</label>
+                    <select id="hotelSelect">
+                        <option value="">בחר מלון</option>
+                        <option value="hagoshrim">הגושרים</option>
+                        <option value="marom">מרום גולן</option>
+                        <option value="galadi">כפר גלעדי</option>
+                        <option value="leonardo">לאונרדו טבריה</option>
+                    </select>
+                </div>
+                <div class="calc-row">
+                    <label>סוג חדר:</label>
+                    <select id="roomType">
+                        <option value="">בחר סוג חדר</option>
+                        <option value="couple">זוג</option>
+                        <option value="triple">שלישיה</option>
+                    </select>
+                </div>
+                <div class="calc-row">
+                    <label>מספר לילות:</label>
+                    <input type="number" id="nights" min="1" value="1">
+                </div>
+                <div class="calc-row">
+                    <label>האם נדרש אולם?</label>
+                    <select id="needHall">
+                        <option value="no">לא</option>
+                        <option value="yes">כן</option>
+                    </select>
+                </div>
+                <div class="calc-row" id="extrasRow" style="display: none;">
+                    <label>תוספות:</label>
+                    <input type="number" id="extras" min="0" value="0" placeholder="מספר ארוחות/תוספות">
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateTotal()">חשב עלות כוללת</button>
+                
+                <div id="result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hotelData = {
+            hagoshrim: {
+                name: "הגושרים",
+                couple: 1430,
+                triple: 2000,
+                hall: 750,
+                extraCost: 155,
+                extraDesc: "ארוחה בשרית למבוגר"
+            },
+            marom: {
+                name: "מרום גולן",
+                couple: 1250,
+                triple: 1750,
+                hall: 3000,
+                extraCost: 150,
+                extraDesc: "ארוחת ערב במסעדה"
+            },
+            galadi: {
+                name: "כפר גלעדי",
+                couple: 1300,
+                triple: 1820,
+                hall: 1000,
+                extraCost: 0,
+                extraDesc: "חצי פנסיון כלול"
+            },
+            leonardo: {
+                name: "לאונרדו טבריה",
+                couple: 1000,
+                triple: 1350,
+                hall: 1500,
+                extraCost: 0,
+                extraDesc: "הכל כלול"
+            }
+        };
+
+        function updateExtrasVisibility() {
+            const hotel = document.getElementById('hotelSelect').value;
+            const extrasRow = document.getElementById('extrasRow');
+            
+            if (hotel && hotelData[hotel].extraCost > 0) {
+                extrasRow.style.display = 'flex';
+                document.getElementById('extras').placeholder = `${hotelData[hotel].extraDesc} (₪${hotelData[hotel].extraCost})`;
+            } else {
+                extrasRow.style.display = 'none';
+            }
+        }
+
+        document.getElementById('hotelSelect').addEventListener('change', updateExtrasVisibility);
+
+        function calculateTotal() {
+            const hotel = document.getElementById('hotelSelect').value;
+            const roomType = document.getElementById('roomType').value;
+            const nights = parseInt(document.getElementById('nights').value) || 1;
+            const needHall = document.getElementById('needHall').value;
+            const extras = parseInt(document.getElementById('extras').value) || 0;
+
+            if (!hotel || !roomType) {
+                alert('אנא בחר מלון וסוג חדר');
+                return;
+            }
+
+            const hotelInfo = hotelData[hotel];
+            let roomCost = roomType === 'couple' ? hotelInfo.couple : hotelInfo.triple;
+            let hallCost = needHall === 'yes' ? hotelInfo.hall : 0;
+            let extrasCost = extras * hotelInfo.extraCost;
+            
+            let totalRoomCost = roomCost * nights;
+            let grandTotal = totalRoomCost + hallCost + extrasCost;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h4>🎯 חישוב עלויות עבור ${hotelInfo.name}</h4>
+                <div style="margin: 15px 0; line-height: 1.6;">
+                    <div><strong>סוג חדר:</strong> ${roomType === 'couple' ? 'זוג' : 'שלישיה'}</div>
+                    <div><strong>מספר לילות:</strong> ${nights}</div>
+                    <div><strong>עלות חדר ללילה:</strong> ₪${roomCost.toLocaleString()}</div>
+                    <div><strong>עלות חדר כוללת:</strong> ₪${totalRoomCost.toLocaleString()}</div>
+                    ${hallCost > 0 ? `<div><strong>עלות אולם:</strong> ₪${hallCost.toLocaleString()}</div>` : ''}
+                    ${extrasCost > 0 ? `<div><strong>תוספות (${extras} × ₪${hotelInfo.extraCost}):</strong> ₪${extrasCost.toLocaleString()}</div>` : ''}
+                    <hr style="margin: 15px 0; border: 1px solid #27ae60;">
+                    <div style="font-size: 1.3em; color: #27ae60;"><strong>סה"כ: ₪${grandTotal.toLocaleString()}</strong></div>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
