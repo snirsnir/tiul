@@ -262,6 +262,7 @@
                         <td class="location">קיבוץ הגושרים</td>
                         <td>
                             <div class="room-type">זוג (40 חדרים)</div>
+                            <div class="room-type">שלישיה ₪2,000</div>
                         </td>
                         <td class="price-breakdown">
                             <div class="price">₪1,430 לזוג</div>
@@ -281,6 +282,7 @@
                         <td class="location">רמת הגולן</td>
                         <td>
                             <div class="room-type">זוג (40 חדרים)</div>
+                            <div class="room-type">שלישיה ₪1,750</div>
                         </td>
                         <td class="price-breakdown">
                             <div class="price">₪1,250 לזוג</div>
@@ -300,6 +302,7 @@
                         <td class="location">עמק החולה</td>
                         <td>
                             <div class="room-type">זוג (40 חדרים)</div>
+                            <div class="room-type">שלישיה ₪1,820</div>
                         </td>
                         <td class="price-breakdown">
                             <div class="price">₪1,300 לזוג</div>
@@ -318,6 +321,7 @@
                         <td class="location">טבריה</td>
                         <td>
                             <div class="room-type">זוג (40 חדרים)</div>
+                            <div class="room-type">שלישיה ₪1,350</div>
                         </td>
                         <td class="price-breakdown">
                             <div class="price">₪1,000 לזוג</div>
@@ -349,16 +353,12 @@
                     </select>
                 </div>
                 <div class="calc-row">
-                    <label>סוג חדר:</label>
-                    <select id="roomType">
-                        <option value="">בחר סוג חדר</option>
-                        <option value="couple">זוג</option>
-                        <option value="triple">שלישיה</option>
-                    </select>
+                    <label>כמות חדרי זוג:</label>
+                    <input type="number" id="coupleRooms" min="0" value="40">
                 </div>
                 <div class="calc-row">
-                    <label>מספר לילות:</label>
-                    <input type="number" id="nights" min="1" value="1">
+                    <label>כמות חדרי שלישיה:</label>
+                    <input type="number" id="tripleRooms" min="0" value="0">
                 </div>
                 <div class="calc-row">
                     <label>האם נדרש אולם?</label>
@@ -368,8 +368,11 @@
                     </select>
                 </div>
                 <div class="calc-row" id="extrasRow" style="display: none;">
-                    <label>תוספות:</label>
-                    <input type="number" id="extras" min="0" value="0" placeholder="מספר ארוחות/תוספות">
+                    <label>האם כולל תוספות?</label>
+                    <select id="includeExtras">
+                        <option value="no">לא</option>
+                        <option value="yes">כן</option>
+                    </select>
                 </div>
                 
                 <button class="calculate-btn" onclick="calculateTotal()">חשב עלות כוללת</button>
@@ -419,9 +422,8 @@
             const hotel = document.getElementById('hotelSelect').value;
             const extrasRow = document.getElementById('extrasRow');
             
-            if (hotel && hotelData[hotel].extraCost > 0) {
+            if (hotel && (hotel === 'hagoshrim' || hotel === 'marom')) {
                 extrasRow.style.display = 'flex';
-                document.getElementById('extras').placeholder = `${hotelData[hotel].extraDesc} (₪${hotelData[hotel].extraCost})`;
             } else {
                 extrasRow.style.display = 'none';
             }
@@ -431,34 +433,44 @@
 
         function calculateTotal() {
             const hotel = document.getElementById('hotelSelect').value;
-            const roomType = document.getElementById('roomType').value;
-            const nights = parseInt(document.getElementById('nights').value) || 1;
+            const coupleRooms = parseInt(document.getElementById('coupleRooms').value) || 0;
+            const tripleRooms = parseInt(document.getElementById('tripleRooms').value) || 0;
             const needHall = document.getElementById('needHall').value;
-            const extras = parseInt(document.getElementById('extras').value) || 0;
+            const includeExtras = document.getElementById('includeExtras') ? document.getElementById('includeExtras').value : 'no';
 
-            if (!hotel || !roomType) {
-                alert('אנא בחר מלון וסוג חדר');
+            if (!hotel) {
+                alert('אנא בחר מלון');
+                return;
+            }
+
+            if (coupleRooms === 0 && tripleRooms === 0) {
+                alert('אנא הזן מספר חדרים');
                 return;
             }
 
             const hotelInfo = hotelData[hotel];
-            let roomCost = roomType === 'couple' ? hotelInfo.couple : hotelInfo.triple;
+            let couplesCost = coupleRooms * hotelInfo.couple;
+            let triplesCost = tripleRooms * hotelInfo.triple;
             let hallCost = needHall === 'yes' ? hotelInfo.hall : 0;
-            let extrasCost = extras * hotelInfo.extraCost;
             
-            let totalRoomCost = roomCost * nights;
-            let grandTotal = totalRoomCost + hallCost + extrasCost;
+            let extrasCost = 0;
+            if (includeExtras === 'yes') {
+                let totalPeople = (coupleRooms * 2) + (tripleRooms * 3);
+                extrasCost = totalPeople * hotelInfo.extraCost;
+            }
+            
+            let totalRoomsCost = couplesCost + triplesCost;
+            let grandTotal = totalRoomsCost + hallCost + extrasCost;
 
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = `
                 <h4>🎯 חישוב עלויות עבור ${hotelInfo.name}</h4>
                 <div style="margin: 15px 0; line-height: 1.6;">
-                    <div><strong>סוג חדר:</strong> ${roomType === 'couple' ? 'זוג' : 'שלישיה'}</div>
-                    <div><strong>מספר לילות:</strong> ${nights}</div>
-                    <div><strong>עלות חדר ללילה:</strong> ₪${roomCost.toLocaleString()}</div>
-                    <div><strong>עלות חדר כוללת:</strong> ₪${totalRoomCost.toLocaleString()}</div>
+                    ${coupleRooms > 0 ? `<div><strong>חדרי זוג:</strong> ${coupleRooms} × ₪${hotelInfo.couple.toLocaleString()} = ₪${couplesCost.toLocaleString()}</div>` : ''}
+                    ${tripleRooms > 0 ? `<div><strong>חדרי שלישיה:</strong> ${tripleRooms} × ₪${hotelInfo.triple.toLocaleString()} = ₪${triplesCost.toLocaleString()}</div>` : ''}
+                    <div><strong>סה"כ חדרים:</strong> ₪${totalRoomsCost.toLocaleString()}</div>
                     ${hallCost > 0 ? `<div><strong>עלות אולם:</strong> ₪${hallCost.toLocaleString()}</div>` : ''}
-                    ${extrasCost > 0 ? `<div><strong>תוספות (${extras} × ₪${hotelInfo.extraCost}):</strong> ₪${extrasCost.toLocaleString()}</div>` : ''}
+                    ${extrasCost > 0 ? `<div><strong>תוספות (${(coupleRooms * 2) + (tripleRooms * 3)} אנשים × ₪${hotelInfo.extraCost}):</strong> ₪${extrasCost.toLocaleString()}</div>` : ''}
                     <hr style="margin: 15px 0; border: 1px solid #27ae60;">
                     <div style="font-size: 1.3em; color: #27ae60;"><strong>סה"כ: ₪${grandTotal.toLocaleString()}</strong></div>
                 </div>
