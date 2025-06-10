@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טיול עובדי טכנודע - צפון ישראל</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header h1 {
+        font-size: 2.5em;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .trip-info {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .info-item {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1em;
+        box-shadow: 0 5px 15px rgba(238, 90, 36, 0.3);
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .info-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(238, 90, 36, 0.4);
+    }
+
+    .day-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        margin-bottom: 30px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .day-section:hover {
+        transform: translateY(-5px);
+    }
+
+    .day-header {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 20px 30px;
+        font-size: 1.8em;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline {
+        padding: 20px;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        padding: 20px;
+        border-radius: 15px;
+        background: rgba(116, 75, 162, 0.05);
+        border-right: 4px solid #764ba2;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .timeline-item:hover {
+        background: rgba(116, 75, 162, 0.1);
+        transform: translateX(-10px);
+        box-shadow: 0 5px 20px rgba(116, 75, 162, 0.2);
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(116, 75, 162, 0.1));
+        transition: width 0.3s ease;
+    }
+
+    .timeline-item:hover::before {
+        width: 100%;
+    }
+
+    .time {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1em;
+        min-width: 120px;
+        text-align: center;
+        margin-left: 20px;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        flex-shrink: 0;
+    }
+
+    .activity {
+        flex: 1;
+        padding-right: 15px;
+    }
+
+    .activity h3 {
+        color: #2c3e50;
+        font-size: 1.3em;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .activity p {
+        color: #555;
+        font-size: 1.1em;
+        line-height: 1.4;
+    }
+
+    .image-container {
+        width: 120px;
+        height: 120px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        margin-right: 20px;
+        flex-shrink: 0;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .image-container:hover {
+        transform: scale(1.05);
+    }
+
+    .activity-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .image-container:hover .activity-image {
+        transform: scale(1.1);
+    }
+
+    .image-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.9em;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .floating-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-circle:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .floating-circle:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        top: 60%;
+        left: 80%;
+        animation-delay: 2s;
+    }
+
+    .floating-circle:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        top: 80%;
+        left: 20%;
+        animation-delay: 4s;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+            opacity: 0.7;
+        }
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+            opacity: 1;
+        }
+    }
+
+    .special-highlight {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        border-right-color: #ff6b6b;
+    }
+
+    .free-time {
+        background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+        border-right-color: #00d2ff;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+        }
+
+        .trip-info {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .timeline-item {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .image-container {
+            margin: 0 auto 15px auto;
+        }
+
+        .time {
+            margin: 15px auto 0 auto;
+            order: 3;
+        }
+
+        .activity {
+            padding: 0;
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+```
+<div class="container">
+    <div class="header fade-in">
+        <h1>🏔️ טיול עובדי טכנודע לצפון 🏔️</h1>
+        <div class="trip-info">
+            <div class="info-item">📅 תאריכים: 9-10.07</div>
+            <div class="info-item">👥 משתתפים: 87</div>
+        </div>
+    </div>
+
+    <div class="day-section fade-in">
+        <div class="day-header">יום ראשון - 9.07</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🚌<br>התארגנות</div>
+                </div>
+                <div class="activity">
+                    <h3>התארגנות וקבלת הוראות</h3>
+                    <p>הגעה לטכנודע, התארגנות לטיול ויציאה</p>
+                </div>
+                <div class="time">07:45</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🚌<br>יציאה</div>
+                </div>
+                <div class="activity">
+                    <h3>יציאה מטכנודע</h3>
+                    <p>התחלת המסע לצפון הארץ</p>
+                </div>
+                <div class="time">08:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <img src="bisotti.jpg" alt="ארוחת בוקר מביסקוטי" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🥐<br>ביסקוטי</div>'">
+                </div>
+                <div class="activity">
+                    <h3>ארוחת בוקר מפנקת</h3>
+                    <p>הגעה לטבריה וארוחת בוקר מפנקת במסעדת ביסקוטי</p>
+                </div>
+                <div class="time">09:00</div>
+            </div>
+
+            <div class="timeline-item special-highlight">
+                <div class="image-container">
+                    <img src="rob.jpg" alt="רוב רוי שייט קיאקים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚣‍♂️<br>רוב רוי</div>'">
+                </div>
+                <div class="activity">
+                    <h3>פעילות רוב רוי - שייט קיאקים</h3>
+                    <p>שייט קיאקים חוויתי מבוסס על משימות בירדן</p>
+                </div>
+                <div class="time">09:45</div>
+            </div>
+
+            <div class="timeline-item special-highlight">
+                <div class="image-container">
+                    <img src="yarok.jpg" alt="רכבים ירוקים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚗<br>רכבים ירוקים</div>'">
+                </div>
+                <div class="activity">
+                    <h3>סיור ברכבים ירוקים</h3>
+                    <p>רכיבה עצמית על רכבים ירוקים לצידו של הירדן הדרומי</p>
+                </div>
+                <div class="time">12:15</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">✅<br>סיום פעילות</div>
+                </div>
+                <div class="activity">
+                    <h3>סיום פעילויות הבוקר</h3>
+                    <p>סיום הפעילויות והכנה למעבר למלון</p>
+                </div>
+                <div class="time">13:45</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <img src="leonardo.jpg" alt="מלון לאונרדו קלאב" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🏨<br>לאונרדו קלאב</div>'">
+                </div>
+                <div class="activity">
+                    <h3>הגעה למלון לאונרדו קלאב</h3>
+                    <p>הגעה למלון ויתי הארוחת צהריים</p>
+                </div>
+                <div class="time">14:15</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🍽️<br>ארוחת צהריים</div>
+                </div>
+                <div class="activity">
+                    <h3>ארוחת צהריים</h3>
+                    <p>ארוחת צהריים במלון</p>
+                </div>
+                <div class="time">14:30</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🗝️<br>צ'ק אין</div>
+                </div>
+                <div class="activity">
+                    <h3>קבלת חדרים</h3>
+                    <p>צ'ק אין במלון וקבלת מפתחות החדרים</p>
+                </div>
+                <div class="time">15:00</div>
+            </div>
+
+            <div class="timeline-item free-time">
+                <div class="image-container">
+                    <div class="image-placeholder">🏊‍♂️<br>זמן חופשי</div>
+                </div>
+                <div class="activity">
+                    <h3>זמן חופשי במתקני המלון</h3>
+                    <p>בריכה, ג'קוזי, חדר כושר ומתקני פנאי נוספים</p>
+                </div>
+                <div class="time">15:00-19:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🍽️<br>ארוחת ערב</div>
+                </div>
+                <div class="activity">
+                    <h3>ארוחת ערב</h3>
+                    <p>ארוחת ערב במסעדת המלון</p>
+                </div>
+                <div class="time">19:00</div>
+            </div>
+
+            <div class="timeline-item special-highlight">
+                <div class="image-container">
+                    <img src="ziv.jpg" alt="פרידה מזיו" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🎉<br>פרידה מזיו</div>'">
+                </div>
+                <div class="activity">
+                    <h3>אירוע גיבוש ופרידה מזיו</h3>
+                    <p>התכנסות באולם לאירוע גיבוש מיוחד ופרידה מזיו</p>
+                </div>
+                <div class="time">20:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🌙<br>כיבוי אורות</div>
+                </div>
+                <div class="activity">
+                    <h3>כיבוי אורות</h3>
+                    <p>מנוחה לקראת יום מחר</p>
+                </div>
+                <div class="time">00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-section fade-in">
+        <div class="day-header">יום שני - 10.07</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🥐<br>ארוחת בוקר</div>
+                </div>
+                <div class="activity">
+                    <h3>ארוחת בוקר</h3>
+                    <p>ארוחת בוקר במלון</p>
+                </div>
+                <div class="time">08:00</div>
+            </div>
+
+            <div class="timeline-item free-time">
+                <div class="image-container">
+                    <div class="image-placeholder">☕<br>זמן חופשי</div>
+                </div>
+                <div class="activity">
+                    <h3>זמן חופשי</h3>
+                    <p>זמן חופשי במלון, ארוזת הציוד והכנה ליציאה</p>
+                </div>
+                <div class="time">08:00-11:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🎒<br>צ'ק אאוט</div>
+                </div>
+                <div class="activity">
+                    <h3>צ'ק אאוט ויציאה מהמלון</h3>
+                    <p>החזרת מפתחות ויציאה מהמלון</p>
+                </div>
+                <div class="time">11:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🚌<br>נסיעה לחיפה</div>
+                </div>
+                <div class="activity">
+                    <h3>הגעה לחיפה</h3>
+                    <p>נסיעה לחיפה לסיור האחרון</p>
+                </div>
+                <div class="time">12:00</div>
+            </div>
+
+            <div class="timeline-item special-highlight">
+                <div class="image-container">
+                    <img src="nisnas.jpg" alt="שוק תלפיות ואדי ניסנאס" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🍯<br>שוק ניסנאס</div>'">
+                </div>
+                <div class="activity">
+                    <h3>סיור טעימות בשוק תלפיות ואדי ניסנאס</h3>
+                    <p>סיור קולינרי מרתק בשווקים של חיפה עם טעימות מגוונות</p>
+                </div>
+                <div class="time">12:00-15:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🚌<br>יציאה מחיפה</div>
+                </div>
+                <div class="activity">
+                    <h3>יציאה מחיפה</h3>
+                    <p>יציאה מחיפה בחזרה לטכנודע</p>
+                </div>
+                <div class="time">15:00</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="image-container">
+                    <div class="image-placeholder">🏠<br>הגעה לטכנודע</div>
+                </div>
+                <div class="activity">
+                    <h3>הגעה משוערת לטכנודע</h3>
+                    <p>סיום הטיול והחזרה הביתה</p>
+                </div>
+                <div class="time">16:00</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // הוספת אנימציות כאשר האלמנטים נכנסים לתצוגה
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // הוספת אנימציה לכל פריט בלוז
+    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(item);
+    });
+
+    // אפקט מיוחד לפריטים מודגשים
+    document.querySelectorAll('.special-highlight').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateX(-15px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateX(-10px) scale(1)';
+        });
+    });
+
+    // אנימציה לכותרות
+    document.querySelectorAll('.day-header').forEach(header => {
+        header.addEventListener('click', () => {
+            header.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+            setTimeout(() => {
+                header.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
+            }, 300);
+        });
+    });
+</script>
+```
+
+</body>
+</html>
