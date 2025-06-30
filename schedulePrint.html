@@ -20,8 +20,8 @@
             font-family: 'Arial', 'Hebrew', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
-            font-size: 11px;
-            line-height: 1.3;
+            font-size: 18px;
+            line-height: 1.4;
         }
 
         .container {
@@ -33,81 +33,81 @@
         .header {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
-            font-size: 22px;
+            font-size: 36px;
             color: #2c3e50;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: bold;
         }
 
         .trip-info {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 8px;
+            gap: 20px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
 
         .info-item {
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             color: white;
-            padding: 6px 12px;
-            border-radius: 12px;
+            padding: 14px 22px;
+            border-radius: 20px;
             font-weight: bold;
-            font-size: 10px;
-            box-shadow: 0 3px 8px rgba(238, 90, 36, 0.3);
+            font-size: 17px;
+            box-shadow: 0 4px 12px rgba(238, 90, 36, 0.3);
         }
 
         .checklist-section {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 15px;
+            padding: 16px;
             margin-bottom: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .checklist-header {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .checklist-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 6px;
-            margin-bottom: 8px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .checklist-item {
             display: flex;
             align-items: center;
-            padding: 4px 6px;
+            padding: 8px 12px;
             background: rgba(17, 153, 142, 0.05);
-            border-radius: 6px;
-            border-right: 2px solid #11998e;
-            font-size: 9px;
+            border-radius: 8px;
+            border-right: 3px solid #11998e;
+            font-size: 16px;
         }
 
         .checklist-emoji {
-            font-size: 11px;
-            margin-left: 6px;
+            font-size: 18px;
+            margin-left: 10px;
             flex-shrink: 0;
         }
 
         .checklist-text {
-            font-size: 9px;
+            font-size: 16px;
             color: #2c3e50;
             font-weight: 600;
         }
@@ -115,86 +115,110 @@
         .important-note {
             background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
             border: 2px solid #ff6b6b;
-            border-radius: 8px;
-            padding: 6px;
+            border-radius: 12px;
+            padding: 14px;
             text-align: center;
-            font-size: 10px;
+            font-size: 18px;
             font-weight: bold;
             color: #2c3e50;
         }
 
-        .timeline-section {
+        .timeline-wrapper {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             flex: 1;
         }
 
         .timeline-header {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 16px 22px;
+            border-radius: 12px;
+            font-size: 22px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .timeline {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            columns: 2;
+            column-gap: 15px;
+            column-fill: auto;
         }
 
         .timeline-item {
             display: flex;
-            flex-direction: column;
-            padding: 8px;
-            border-radius: 8px;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 12px;
             background: rgba(116, 75, 162, 0.05);
-            border-right: 3px solid #764ba2;
-            font-size: 9px;
-            min-height: 80px;
-        }
-
-        .timeline-item-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 6px;
+            border-right: 4px solid #764ba2;
+            font-size: 16px;
+            margin-bottom: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .time {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 4px 8px;
-            border-radius: 10px;
+            padding: 6px 10px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 8px;
+            font-size: 13px;
             text-align: center;
-            margin-left: 6px;
+            margin-left: 10px;
+            flex-shrink: 0;
+            min-width: 80px;
+            writing-mode: horizontal-tb;
+        }
+
+        .image-container {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 0 8px;
             flex-shrink: 0;
         }
 
-        .activity-emoji {
-            font-size: 14px;
-            margin-right: 6px;
-            flex-shrink: 0;
+        .activity-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .activity {
+            flex: 1;
         }
 
         .activity h3 {
             color: #2c3e50;
-            font-size: 9px;
-            margin-bottom: 3px;
+            font-size: 15px;
+            margin-bottom: 4px;
             font-weight: 600;
-            flex: 1;
         }
 
         .activity p {
             color: #555;
-            font-size: 8px;
-            line-height: 1.2;
+            font-size: 13px;
+            line-height: 1.3;
         }
 
         .special-highlight {
@@ -210,13 +234,15 @@
         .day-divider {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
             color: white;
-            padding: 8px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 12px;
             text-align: center;
             font-weight: bold;
-            font-size: 12px;
-            margin: 8px 0;
-            grid-column: 1 / -1;
+            font-size: 18px;
+            margin: 15px 0 10px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            column-span: all;
         }
 
         .floating-elements {
@@ -237,24 +263,24 @@
         }
 
         .floating-circle:nth-child(1) {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             top: 15%;
             left: 8%;
             animation-delay: 0s;
         }
 
         .floating-circle:nth-child(2) {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             top: 50%;
             left: 85%;
             animation-delay: 2s;
         }
 
         .floating-circle:nth-child(3) {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             top: 75%;
             left: 15%;
             animation-delay: 4s;
@@ -266,7 +292,7 @@
                 opacity: 0.5;
             }
             50% {
-                transform: translateY(-10px) rotate(180deg);
+                transform: translateY(-15px) rotate(180deg);
                 opacity: 0.8;
             }
         }
@@ -358,16 +384,15 @@
             </div>
         </div>
 
-        <div class="timeline-section">
+        <div class="timeline-wrapper">
             <div class="timeline-header">📅 לוח זמנים מפורט - 9-10 ביולי</div>
             <div class="timeline">
-                <!-- יום רביעי -->
                 <div class="day-divider">יום רביעי - 9.07</div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🏢</span>
-                        <div class="time">07:45</div>
+                    <div class="time">07:45</div>
+                    <div class="image-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Technoda_building_in_Givat_Olga_Suburb_of_Hadera.jpg/1200px-Technoda_building_in_Givat_Olga_Suburb_of_Hadera.jpg" alt="טכנודע" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🏢<br>טכנודע</div>'">
                     </div>
                     <div class="activity">
                         <h3>הגעה לטכנודע</h3>
@@ -376,119 +401,130 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🚌</span>
-                        <div class="time">08:00</div>
+                    <div class="time">08:00</div>
+                    <div class="image-container">
+                        <img src="https://en.yutong.com/res/template/en2023/resource/images/sy_img15.webp" alt="אוטובוס יציאה" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚌<br>יציאה</div>'">
                     </div>
                     <div class="activity">
                         <h3>יציאה מטכנודע</h3>
-                        <p>התחלת המסע לצפון</p>
+                        <p>התחלת המסע לצפון הארץ</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🥐</span>
-                        <div class="time">09:00</div>
+                    <div class="time">09:00</div>
+                    <div class="image-container">
+                        <img src="https://media.getmood.io/warehouse/dynamic/538703.jpg" alt="ארוחת בוקר מפנקת" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🥐<br>ביסקוטי</div>'">
                     </div>
                     <div class="activity">
                         <h3>ארוחת בוקר ביסקוטי</h3>
-                        <p>ארוחת בוקר מפנקת בטבריה</p>
+                        <p>הגעה לטבריה וארוחת בוקר מפנקת</p>
                     </div>
                 </div>
 
                 <div class="timeline-item special-highlight">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🚣‍♂️</span>
-                        <div class="time">09:45</div>
+                    <div class="time">09:45</div>
+                    <div class="image-container">
+                        <img src="kayak.PNG" alt="רוב רוי שייט קיאקים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚣‍♂️<br>רוב רוי</div>'">
                     </div>
                     <div class="activity">
                         <h3>רוב רוי - שייט קיאקים</h3>
-                        <p>שייט תחרותי מבוסס משימות בירדן</p>
+                        <p>שייט קיאקים תחרותי מבוסס משימות בירדן</p>
                     </div>
                 </div>
 
                 <div class="timeline-item special-highlight">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🚗</span>
-                        <div class="time">12:15</div>
+                    <div class="time">12:15</div>
+                    <div class="image-container">
+                        <img src="yarok.JPG" alt="רכבים ירוקים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚗<br>רכבים ירוקים</div>'">
                     </div>
                     <div class="activity">
-                        <h3>רכבים ירוקים</h3>
-                        <p>רכיבה עצמית לצידו של הירדן הדרומי</p>
+                        <h3>סיור ברכבים ירוקים</h3>
+                        <p>רכיבה עצמית על רכבים ירוקים לצידו של הירדן הדרומי</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">✅</span>
-                        <div class="time">13:45</div>
+                    <div class="time">13:45</div>
+                    <div class="image-container">
+                        <div class="image-placeholder">✅<br>סיום</div>
                     </div>
                     <div class="activity">
                         <h3>סיום פעילויות הבוקר</h3>
-                        <p>הכנה למעבר למלון</p>
+                        <p>סיום הפעילויות והכנה למעבר למלון</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🏨</span>
-                        <div class="time">14:15</div>
+                    <div class="time">14:15</div>
+                    <div class="image-container">
+                        <img src="leonardo.JPG" alt="מלון לאונרדו קלאב" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🏨<br>לאונרדו קלאב</div>'">
                     </div>
                     <div class="activity">
-                        <h3>הגעה למלון לאונרדו</h3>
+                        <h3>הגעה למלון לאונרדו קלאב</h3>
                         <p>הגעה למלון וארוחת צהריים</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🗝️</span>
-                        <div class="time">15:00</div>
+                    <div class="time">14:30</div>
+                    <div class="image-container">
+                        <img src="https://pic.fattal-alazman.co.il/WebsiteMedia/images/newimages/1920-1080/north/leonardo-tiberias/leonardo-tiberias-dining-room-4.jpg" alt="ארוחת צהריים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🍽️<br>צהריים</div>'">
                     </div>
                     <div class="activity">
-                        <h3>צ'ק אין</h3>
-                        <p>קבלת מפתחות החדרים</p>
+                        <h3>ארוחת צהריים</h3>
+                        <p>ארוחת צהריים במלון</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">15:00</div>
+                    <div class="image-container">
+                        <img src="https://static.leonardo-hotels.com/image/rsucv_lct_02_jan20_1920x1280_d11d2ce6fede7d7a5bd9a0df2842584d_1200x800_mobile_3.jpeg" alt="קבלת חדרים" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🗝️<br>צ\'ק אין</div>'">
+                    </div>
+                    <div class="activity">
+                        <h3>קבלת חדרים</h3>
+                        <p>צ'ק אין במלון וקבלת מפתחות החדרים</p>
                     </div>
                 </div>
 
                 <div class="timeline-item free-time">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🏊‍♂️</span>
-                        <div class="time">15:00-19:00</div>
+                    <div class="time">15:00-19:00</div>
+                    <div class="image-container">
+                        <img src="https://static.leonardo-hotels.com/image/leonardo-club-tiberia-water-slide-1-300-dpi_a08a565828e3bc5d0d769ddbb79911cb_2048x1367_desktop_2.jpeg" alt="זמן חופשי במלון" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🏊‍♂️<br>זמן חופשי</div>'">
                     </div>
                     <div class="activity">
-                        <h3>זמן חופשי במלון</h3>
-                        <p>בריכה, ג'קוזי, חדר כושר וחצירים</p>
+                        <h3>זמן חופשי במתקני המלון</h3>
+                        <p>בריכה, ג'קוזי, חדר כושר והרבה צ'ייסרים</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🍽️</span>
-                        <div class="time">19:00</div>
+                    <div class="time">19:00</div>
+                    <div class="image-container">
+                        <img src="https://pic.fattal-alazman.co.il/WebsiteMedia/images/newSite/Leonardo%20Jerusalem%20Restaurant_01.jpg" alt="ארוחת ערב" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🍽️<br>ארוחת ערב</div>'">
                     </div>
                     <div class="activity">
                         <h3>ארוחת ערב</h3>
-                        <p>במסעדת המלון</p>
+                        <p>ארוחת ערב במסעדת המלון</p>
                     </div>
                 </div>
 
                 <div class="timeline-item special-highlight">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🎉</span>
-                        <div class="time">20:00</div>
+                    <div class="time">20:00</div>
+                    <div class="image-container">
+                        <img src="https://img.freepik.com/free-vector/party-neon-sign_540545-36.jpg?semt=ais_items_boosted&w=740" alt="אירוע גיבוש" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🎉<br>אירוע גיבוש</div>'">
                     </div>
                     <div class="activity">
-                        <h3>אירוע גיבוש</h3>
-                        <p>באולם המלון עם המון הפתעות</p>
+                        <h3>פעילות גיבוש בבית המלון</h3>
+                        <p>התכנסות באולם בבית המלון לאירוע גיבוש עם המון הפתעות</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🌙</span>
-                        <div class="time">00:00</div>
+                    <div class="time">00:00</div>
+                    <div class="image-container">
+                        <div class="image-placeholder">🌙<br>שינה</div>
                     </div>
                     <div class="activity">
                         <h3>כיבוי אורות</h3>
@@ -496,68 +532,67 @@
                     </div>
                 </div>
 
-                <!-- יום חמישי -->
                 <div class="day-divider">יום חמישי - 10.07</div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🥐</span>
-                        <div class="time">08:00</div>
+                    <div class="time">08:00</div>
+                    <div class="image-container">
+                        <img src="https://media.getmood.io/warehouse/dynamic/538703.jpg" alt="ארוחת בוקר" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🥐<br>ארוחת בוקר</div>'">
                     </div>
                     <div class="activity">
                         <h3>ארוחת בוקר</h3>
-                        <p>במלון</p>
+                        <p>ארוחת בוקר במלון</p>
                     </div>
                 </div>
 
                 <div class="timeline-item free-time">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">☕</span>
-                        <div class="time">08:00-11:00</div>
+                    <div class="time">08:00-11:00</div>
+                    <div class="image-container">
+                        <img src="https://static.leonardo-hotels.com/image/leonardo-club-tiberia-water-slide-1-300-dpi_a08a565828e3bc5d0d769ddbb79911cb_2048x1367_desktop_2.jpeg" alt="זמן חופשי" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>☕<br>זמן חופשי</div>'">
                     </div>
                     <div class="activity">
                         <h3>זמן חופשי</h3>
-                        <p>אריזת ציוד והכנה ליציאה</p>
+                        <p>זמן חופשי במלון, אריזת הציוד והכנה ליציאה</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🎒</span>
-                        <div class="time">11:00</div>
+                    <div class="time">11:00</div>
+                    <div class="image-container">
+                        <img src="https://www.checkinscan.com/wp-content/uploads/BLOG_check-out_1200x800.jpg" alt="צ'ק אאוט" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🎒<br>צ\'ק אאוט</div>'">
                     </div>
                     <div class="activity">
-                        <h3>צ'ק אאוט</h3>
+                        <h3>צ'ק אאוט ויציאה מהמלון</h3>
                         <p>החזרת מפתחות ויציאה מהמלון</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🚌</span>
-                        <div class="time">12:00</div>
+                    <div class="time">12:00</div>
+                    <div class="image-container">
+                        <img src="https://i0.wp.com/www.touristisrael.com/wp-content/uploads/2012/03/haifa-city-tour-israel-scaled.jpg?fit=2560%2C1707&ssl=1" alt="הגעה לחיפה" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚌<br>נסיעה לחיפה</div>'">
                     </div>
                     <div class="activity">
                         <h3>הגעה לחיפה</h3>
-                        <p>נסיעה לסיור הקולינרי</p>
+                        <p>נסיעה לחיפה לסיור הקולינרי</p>
                     </div>
                 </div>
 
                 <div class="timeline-item special-highlight">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🍯</span>
-                        <div class="time">12:00-15:00</div>
+                    <div class="time">12:00-15:00</div>
+                    <div class="image-container">
+                        <img src="nisnas.PNG" alt="שוק תלפיות ואדי ניסנאס" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🍯<br>שוק ניסנאס</div>'">
                     </div>
                     <div class="activity">
-                        <h3>סיור טעימות בשוק ניסנאס</h3>
-                        <p>סיור קולינרי מרתק בשווקים של חיפה</p>
+                        <h3>סיור טעימות בשוק תלפיות ואדי ניסנאס</h3>
+                        <p>סיור קולינרי מרתק בשווקים של חיפה עם טעימות מגוונות</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🚌</span>
-                        <div class="time">15:00</div>
+                    <div class="time">15:00</div>
+                    <div class="image-container">
+                        <img src="https://ynet-pic1.yit.co.il/picserver5/crop_images/2022/07/24/Bk4IZX00q29/Bk4IZX00q29_0_87_1280_720_0_large.jpg" alt="יציאה מחיפה" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🚌<br>יציאה מחיפה</div>'">
                     </div>
                     <div class="activity">
                         <h3>יציאה מחיפה</h3>
@@ -566,12 +601,12 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-item-header">
-                        <span class="activity-emoji">🏠</span>
-                        <div class="time">16:00</div>
+                    <div class="time">16:00</div>
+                    <div class="image-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Technoda_building_in_Givat_Olga_Suburb_of_Hadera.jpg/1200px-Technoda_building_in_Givat_Olga_Suburb_of_Hadera.jpg" alt="הגעה לטכנודע" class="activity-image" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>🏠<br>הגעה לטכנודע</div>'">
                     </div>
                     <div class="activity">
-                        <h3>הגעה לטכנודע</h3>
+                        <h3>הגעה משוערת לטכנודע</h3>
                         <p>סיום הטיול והחזרה הביתה</p>
                     </div>
                 </div>
